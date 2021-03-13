@@ -37,6 +37,9 @@ void AShooterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 	PlayerInputComponent->BindAxis(TEXT("LookRight"), this, &AShooterCharacter::LookRight);
 
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AShooterCharacter::Jumpp);
+
+	PlayerInputComponent->BindAxis(TEXT("LookUpRate"), this, &AShooterCharacter::LookUpRate);
+	PlayerInputComponent->BindAxis(TEXT("LookRightRate"), this, &AShooterCharacter::LookRightRate);
 }
 
 void AShooterCharacter::MoveForward(float AxisValue)
@@ -62,5 +65,15 @@ void AShooterCharacter::LookRight(float AxisValue)
 void AShooterCharacter::Jumpp()
 {
 	Jump();
+}
+
+void AShooterCharacter::LookUpRate(float AxisValue)
+{
+	AddControllerPitchInput(AxisValue * JoystickSensivity * GetWorld()->DeltaTimeSeconds);
+}
+
+void AShooterCharacter::LookRightRate(float AxisValue)
+{
+	AddControllerYawInput(AxisValue * JoystickSensivity * GetWorld()->DeltaTimeSeconds);
 }
 
