@@ -4,6 +4,7 @@
 #include "Gun.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "DrawDebugHelpers.h"
 
 // Sets default values
 AGun::AGun()
@@ -38,4 +39,22 @@ void AGun::PullTrigger()
 {
 	UE_LOG(LogTemp, Warning, TEXT("You pulled the trigger!"));
 	UGameplayStatics::SpawnEmitterAttached(MuzzleFlash, Mesh, TEXT("MuzzleFlashSocket"));
+
+	APawn* OwnerPawn = Cast<APawn>(GetOwner());
+
+	if (OwnerPawn)
+	{
+		AController* OwnerController = OwnerPawn->GetController();
+
+		if (OwnerController) {
+			FVector Location;
+			FRotator Rotation;
+
+			OwnerController->GetPlayerViewPoint(Location, Rotation);
+
+			DrawDebugCamera(GetWorld(), Location, Rotation, 90, 2.f, FColor::Red, true);
+		}
+
+	}
+
 }
