@@ -5,6 +5,7 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "DrawDebugHelpers.h"
+#include "Engine/World.h"
 
 // Sets default values
 AGun::AGun()
@@ -52,7 +53,16 @@ void AGun::PullTrigger()
 
 			OwnerController->GetPlayerViewPoint(Location, Rotation);
 
-			DrawDebugCamera(GetWorld(), Location, Rotation, 90, 2.f, FColor::Red, true);
+			FVector End = Location + Rotation.Vector() * MaxRange;
+
+			FHitResult HitResult;
+
+			// Line Trace
+			if (GetWorld()->LineTraceSingleByChannel(HitResult, Location, End, ECollisionChannel::ECC_GameTraceChannel1))
+			{
+				DrawDebugPoint(GetWorld(), HitResult.Location, 20, FColor::Red, true);
+			}
+
 		}
 
 	}
