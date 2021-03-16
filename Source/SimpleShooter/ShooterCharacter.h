@@ -36,6 +36,7 @@ private:
 	void Jumpp();
 	void LookUpRate(float AxisValue);
 	void LookRightRate(float AxisValue);
+	void Shoot();
 
 	UPROPERTY(EditAnywhere)
 	float JoystickSensivity = 80.f;
