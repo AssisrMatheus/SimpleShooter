@@ -47,7 +47,7 @@ private:
 	float JoystickSensivity = 80.f;
 
 	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<AGun> GunClass ;
+	TSubclassOf<AGun> GunClass;
 
 	UPROPERTY()
 	AGun* Gun;
