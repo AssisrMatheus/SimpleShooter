@@ -33,6 +33,8 @@ public:
 	UFUNCTION(BlueprintPure)
 	bool IsDead() const;
 
+	void Shoot();
+
 private:
 	void MoveForward(float AxisValue);
 	void LookUp(float AxisValue);
@@ -41,7 +43,6 @@ private:
 	void Jumpp();
 	void LookUpRate(float AxisValue);
 	void LookRightRate(float AxisValue);
-	void Shoot();
 
 	UPROPERTY(EditAnywhere)
 	float JoystickSensivity = 80.f;
