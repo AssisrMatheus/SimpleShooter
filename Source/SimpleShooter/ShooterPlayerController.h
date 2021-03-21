@@ -34,5 +34,7 @@ private:
 	float RestartDelay = 5.f;
 
 	FTimerHandle RestartTimer;
+
+	UPROPERTY()
 	UUserWidget* HudWidget;
 };
